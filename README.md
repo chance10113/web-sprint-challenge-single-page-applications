@@ -54,7 +54,7 @@ End to end testing is going through a form/file/page/etc and making sure that al
 
 Your finished project must include all of the following requirements:
 
-- [ ] A homepage that has a "/" route and links to your form (button, nav bar, or any other type of link is acceptable)
+- [X] A homepage that has a "/" route and links to your form (button, nav bar, or any other type of link is acceptable)
 - [ ] A form with a "/pizza" route
 - [ ] A name text input field
 - [ ] Validation for name - name must be at least 2 characters
