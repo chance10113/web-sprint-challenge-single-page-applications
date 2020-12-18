@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Route, Link, Switch } from "react-router-dom";
 import Home from "./components/Home";
 import PizzaForm from "./components/PizzaForm";
-//Prolly need a Schema
-//Might need to create a seperate "Order" or "Pizza".js
+import schema from "./components/PizzaSchema"
+import Pizza from "./components/Pizza"
+import * as yup from 'yup'
 //Need yup as validation
 //Might need to create Dummy Data to import
 
@@ -23,7 +24,6 @@ const initialFormValues = {
 
 const initialFormErrors = {
   name: "",
-  size: "",
 };
 
 const initialPizzas = [];
