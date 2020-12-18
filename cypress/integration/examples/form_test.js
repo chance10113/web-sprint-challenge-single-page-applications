@@ -13,4 +13,51 @@ const mandOranges = () => cy.get('input[name="mandOranges"]')
 const ham = () => cy.get('input[name="ham"]')
 const submitButton = () => cy.get('#submitButton')
 
+it("Do elements show up?", () => {
+    name().should("exist")
+    specIns().should("exist")
+    pineapple().should("exist")
+    jalepeno().should("exist")
+    mandOranges().should("exist")
+    ham().should("exist")
+    submitButton().should("exist")
+})
+it("Can type in text inputs?", () => {
+    name()
+       .should("have.value", "")
+       .type("Chaz")
+       .should("have.value", "Chaz");
+    specIns()
+    .should("have.value", "")
+    .type("Extra Napkins please!")
+    .should("have.value", "Extra Napkins please!");
+})
+it("Do the boxes work?", () => {
+    pineapple()
+         .should("have.value", 'unchecked' )
+         .check()
+         .should("have.value", 'checked' )
+    jalepeno()
+        .should("have.value", 'unchecked' )
+        .check()
+        .should("have.value", 'checked' )
+    mandOranges()
+        .should("have.value", 'unchecked' )
+        .check()
+        .should("have.value", 'checked' )
+    ham()
+        .should("have.value", 'unchecked' )
+        .check()
+        .should("have.value", 'checked' )
+})      
+it("Can the form submit?", () => {
+    //Does the button start disabled?
+    submitButton().should("be.disabled")
+    //Will the first text field activate button?
+    name().type("Chazzz!")
+    submitButton().should("be.disabled");
+    name().clear()
+    //Will selecting a size?
+
+})
 })
