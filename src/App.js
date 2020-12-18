@@ -27,13 +27,11 @@ const initialFormErrors = {
 };
 
 const initialPizzas = [];
-const initialDisabled = true;
 
 const App = () => {
   const [pizzas, setPizzas] = useState(initialPizzas);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
-  const [disabled, setDisabled] = useState(initialDisabled);
   //Create fakeData to render array of orders?
   //Maybe a function to post new pizza order to the fakeData?
   //Def need things to handle form changes and events stuff
@@ -62,7 +60,6 @@ const App = () => {
         values={formValues}
         change={inputChange}
         submit={formSubmit}
-        disabled={disabled}
         errors={formErrors}
         />
 

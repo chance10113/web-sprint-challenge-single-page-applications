@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 export default function PizzaForm(props) {
-  const { values, submit, change, disabled, errors } = props;
+  const { values, submit, change,  errors } = props;
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -89,7 +89,7 @@ export default function PizzaForm(props) {
         </label>
       </div>
       <div className="PizzaForm-group-submit">
-        <button id="submitButton" disabled={disabled}> Add to Order </button>
+        <button id="submitButton" > Add to Order </button>
         <div className="Errors">
           <div>{errors.name}</div>
           <div>{errors.size}</div>

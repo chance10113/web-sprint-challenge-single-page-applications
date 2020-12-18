@@ -51,13 +51,12 @@ it("Do the boxes work?", () => {
         .should("have.value", 'checked' )
 })      
 it("Can the form submit?", () => {
-    //Does the button start disabled?
-    submitButton().should("be.disabled")
-    //Will the first text field activate button?
     name().type("Chazzz!")
-    submitButton().should("be.disabled");
-    name().clear()
-    //Will selecting a size?
+    pineapple().check()
+    jalepeno().check()
+    mandOranges().check()
+    ham().check()
+    submitButton().click()
 
 })
 })
