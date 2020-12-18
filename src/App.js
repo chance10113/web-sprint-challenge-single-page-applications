@@ -9,12 +9,19 @@ const App = () => {
   return (
     <div className="App-Holder-Div" >
         <nav> 
-        <h1 className="Home-Header" >Lambda Eats</h1>
         <div className="nav-bar-links">
           <Link to="/"> Home </Link>
           <Link to="/PizzaForm"> Pizza? </Link>
         </div>
+        <h1 className="Home-Header" >Lambda Eats</h1>
+        <h2>  Would you like a....? </h2>
         </nav>
+
+      <Switch>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
     </div>
   );
 };

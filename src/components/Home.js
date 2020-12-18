@@ -1,20 +1,31 @@
 //HOMEPAGE:
 //Uses "/" route, has a button for the form ("PIZZA?)?
+//To use unsplash as a img src, you need to set it up as
+// "https://source.unsplash.com/{NO BRACKETS THE ALPHANUMERIC BIT GOES HERE!!!}"
+//example: "https://unsplash.com/photos/oBbTc1VoT-0" turns into
+//"https://source.unsplash.com/oBbTc1VoT-0"
 
-import React from 'react'
-import { useHistory } from 'react-router-dom'
+import React from "react";
+import { useHistory } from "react-router-dom";
 
 export default function Home() {
-const history = useHistory()
+  const history = useHistory();
 
-const routeToPizzaForm = () => {
-    history.push("/PizzaForm")
-}
+  const routeToPizzaForm = () => {
+    history.push("/PizzaForm");
+  };
 
-return(
-    <div className= "Home Page Holder">
-        <button onClick={routeToPizzaForm} className="Home to Shop Button"> PIZZA? </button>
+  return (
+    <div className="Home Page Holder">
+      <img
+        className="Pizza-Splash"
+        src="https://source.unsplash.com/oBbTc1VoT-0"
+        alt=""
+      />
+      <button onClick={routeToPizzaForm} className="Home to Shop Button">
+        {" "}
+        PIZZA?{" "}
+      </button>
     </div>
-)
-
+  );
 }
