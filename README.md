@@ -31,19 +31,24 @@ Commit your code regularly and meaningfully. This helps both you (in case you ev
 Demonstrate your understanding of this week's concepts by answering the following free-form questions. Edit this document to include your answers after each question.
 
 1. In 1-2 sentences, explain what React's `useRouteMatch` hook is used for.
+It tries to match the current URL in much the same way the <Route> would, but without actually rendering a route. It can either take no argument, or take the props arument of its match path.
+
 1. How would you explain form validation to someone who has never programmed before?
+Form validation is a way to make sure that all the requirements are met before you can submit information. Think about it like writing a letter: You have to write a valid address in the proper formatting, otherwise, they return it to you instead of sending it. Only this way, you get feedback much quicker.
+
 1. In 1-2 sentences, define end to end testing.
+End to end testing is going through a form/file/page/etc and making sure that all of the elements not only display, but can be properly interacted with by a user. This allows automated testing to see if a page is functional, and if all the inputs nad submissions and values are correct.
 
 ## Instructions
 
 ### Task 1: Project Set Up
 
-- [ ] Create a forked copy of this project
+- [X] Create a forked copy of this project
 - [ ] Add your team lead as collaborator on Github
-- [ ] Clone your OWN version of the repository (Not Lambda's by mistake!)
-- [ ] Create a new branch: `git checkout -b <firstName-lastName>`
-- [ ] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly
-- [ ] Push commits: `git push origin <firstName-lastName>`
+- [X] Clone your OWN version of the repository (Not Lambda's by mistake!)
+- [X] Create a new branch: `git checkout -b <firstName-lastName>`
+- [x] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly
+- [X] Push commits: `git push origin <firstName-lastName>`
 
 ### Task 2: Project Requirements
 
@@ -57,6 +62,18 @@ Your finished project must include all of the following requirements:
 - [ ] A checklist for toppings - at least 4 (hint: name each separately!)
 - [ ] Text input for special instructions
 - [ ] An Add to Order button that submits form and returns a database record of name, size, toppings and special instructions
+
+
+//HOMEPAGE:
+    Uses "/" route, has a button for the form ("PIZZA?)?
+//PIZZAFORM:
+    Uses "/pizza" route,
+    Text input for name
+        (Needs Validation, .min(2, "Needs at least 2 char"))
+    Dropdown Menu with sizes
+    At least 4 checkboxes for toppings (Give them each seperate Names!)
+    Text Input for Special Instructions
+    Add to Order button that submits form, returning database of name, size, toppings, instructions
 
 #### Testing MVP
 
