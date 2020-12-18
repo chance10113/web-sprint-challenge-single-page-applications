@@ -1,10 +1,3 @@
-//HOMEPAGE:
-//Uses "/" route, has a button for the form ("PIZZA?)?
-//To use unsplash as a img src, you need to set it up as
-// "https://source.unsplash.com/{NO BRACKETS THE ALPHANUMERIC BIT GOES HERE!!!}"
-//example: "https://unsplash.com/photos/oBbTc1VoT-0" turns into
-//"https://source.unsplash.com/oBbTc1VoT-0"
-
 import React from "react";
 import { useHistory } from "react-router-dom";
 
