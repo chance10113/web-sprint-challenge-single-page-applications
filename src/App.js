@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Route, Link, Switch } from "react-router-dom";
 import Home from "./components/Home";
 import PizzaForm from "./components/PizzaForm";
-import schema from "./components/PizzaSchema"
-import Pizza from "./components/Pizza"
-import * as yup from 'yup'
+import schema from "./components/PizzaSchema";
+import Pizza from "./components/Pizza";
+import * as yup from "yup";
+import axios from 'axios'
 //Need yup as validation
 //Might need to create Dummy Data to import
 
@@ -36,15 +37,76 @@ const App = () => {
   //Maybe a function to post new pizza order to the fakeData?
   //Def need things to handle form changes and events stuff
 
-  const inputChange = (name, value) => {
-    return null
-    //Create a funciton to handle changes
-  }
+  const getPizzas = () => {
+    
+    axios
+      .get("")
+      .then((res) => {
+        setPizzas(res.data);
+      })
+      .catch((error) => {
+        console.log("GetUsers Broke!", error);
+      });
+  };
 
+  const postNewPizza = (newPizza) => {
+    console.log(newPizza);
+    axios
+      .post("", newPizza)
+      .then((res) => {
+        setPizzas([res.data, ...pizzas]);
+        setFormValues(initialFormValues);
+        console.log("Post getBack?", pizzas);
+        console.log("Response", res.data);
+        console.log("setPizzas", [res.data, ...pizzas]);
+      })
+      .catch((error) => {
+        console.log("postNewPizzaBroke", error);
+      });
+  };
+
+
+  const inputChange = (name, value) => {
+    yup
+      .reach(schema, name)
+      .validate(value)
+      .then(() => {
+        setFormErrors({
+          ...formErrors,
+          [name]: "",
+        });
+      })
+      .catch((error) => {
+        setFormErrors({
+          ...formErrors,
+          [name]: error.errors,
+        });
+      });
+    setFormValues({
+      ...formValues,
+      [name]: value,
+    });
+  };
   const formSubmit = () => {
-    return null
-    //create a function to submit the form
-  }
+    const newPizza = {
+      first_name: formValues.first_name.trim(),
+      email: formValues.email.trim(),
+      password: formValues.password.trim(),
+    };
+    postNewPizza(newPizza);
+  };
+
+  useEffect(() => {
+    getPizzas();
+  }, []);
+
+  // useEffect(() => {
+  //   //SCHEMA STUFF GOES HERE!!! BETTER WRITE IT!!
+  //   //also some SetDisabled stuff too
+  //   schema.isValid(formValues).then((valid) => {
+  //     setDisabled(!valid);
+  //   });
+  // }, [formValues]);
 
   return (
     <div className="App-Holder-Div">
@@ -61,11 +123,11 @@ const App = () => {
         change={inputChange}
         submit={formSubmit}
         errors={formErrors}
-        />
+      />
 
-      {/* {pizzas.map((pizza) => {
+       {/* {pizzas.map((pizza) => {
         return <Pizza key={pizza.id} details={pizza} />
-      })}  */}
+      })}   */}
       <Switch>
         <Route path="/">
           <Home />
