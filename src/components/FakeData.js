@@ -11,8 +11,11 @@
 //     ham: false,
 //   };
 
-export default [
+import {v4 as uuid} from 'uuid'
+
+export default  [
     {
+        id: uuid(),
         name: 'Steve',
         size: 'Medium',
         pineapple: false,
@@ -21,7 +24,8 @@ export default [
             ham: false,
         specIns: ""
     },
-    {
+    {   
+        id: uuid(),
         name: 'Stanklin',
         size: 'Large',
         pineapple: true,
