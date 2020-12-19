@@ -21,5 +21,5 @@ export default yup.object().shape({
     ham:yup
         .boolean()
         .oneOf([true]),
-    //NEED TO ADD EVERYTHIGN ELSE!!!
+    
 })

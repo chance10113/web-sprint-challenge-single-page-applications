@@ -5,7 +5,7 @@ import PizzaForm from "./components/PizzaForm";
 import schema from "./components/PizzaSchema";
 import Pizza from "./components/Pizza";
 import * as yup from "yup";
-import axios from 'axios'
+import Data from "./components/FakeData"
 //Need yup as validation
 //Might need to create Dummy Data to import
 
@@ -29,6 +29,12 @@ const initialFormErrors = {
 
 const initialPizzas = [];
 
+function fetchPizzas() {
+  return Promise.resolve({ success: true, Data })
+}
+
+console.log(fetchPizzas)
+
 const App = () => {
   const [pizzas, setPizzas] = useState(initialPizzas);
   const [formValues, setFormValues] = useState(initialFormValues);
@@ -38,20 +44,22 @@ const App = () => {
   //Def need things to handle form changes and events stuff
 
   const getPizzas = () => {
-    
-    axios
-      .get("")
+    fetch(Data)
+      // .get("")
       .then((res) => {
-        setPizzas(res.data);
+        console.log("res", res)
+        console.log("resData", res.data)
+        setPizzas(res.data.data);
       })
       .catch((error) => {
-        console.log("GetUsers Broke!", error);
+        console.log("GetPizzas Broke!", error)
+        ;
       });
   };
 
   const postNewPizza = (newPizza) => {
     console.log(newPizza);
-    axios
+    fetch(Data)
       .post("", newPizza)
       .then((res) => {
         setPizzas([res.data, ...pizzas]);
@@ -64,7 +72,6 @@ const App = () => {
         console.log("postNewPizzaBroke", error);
       });
   };
-
 
   const inputChange = (name, value) => {
     yup
@@ -89,9 +96,13 @@ const App = () => {
   };
   const formSubmit = () => {
     const newPizza = {
-      first_name: formValues.first_name.trim(),
-      email: formValues.email.trim(),
-      password: formValues.password.trim(),
+      name: formValues.name.trim(),
+      specIns: formValues.specIns.trim(),
+      size: formValues.size.trim(),
+      pineapple: formValues.pineapple,
+      jalepeno: formValues.jalepeno,
+      mandOranges: formValues.mandOranges,
+      ham: formValues.ham,
     };
     postNewPizza(newPizza);
   };
@@ -118,17 +129,20 @@ const App = () => {
         <h1 className="Home-Header">Lambda Eats</h1>
         <h2> Would you like a....? </h2>
       </nav>
-      <PizzaForm
+     
+
+      {pizzas.map((pizza) => {
+        return <Pizza key={pizza.id} details={pizza} />;
+      })}
+      <Switch>
+        <Route path="/PizzaForm">
+        <PizzaForm
         values={formValues}
         change={inputChange}
         submit={formSubmit}
         errors={formErrors}
       />
-
-       {/* {pizzas.map((pizza) => {
-        return <Pizza key={pizza.id} details={pizza} />
-      })}   */}
-      <Switch>
+        </Route>
         <Route path="/">
           <Home />
         </Route>
