@@ -5,7 +5,7 @@ import PizzaForm from "./components/PizzaForm";
 import schema from "./components/PizzaSchema";
 import Pizza from "./components/Pizza";
 import * as yup from "yup";
-import Data from "./components/FakeData"
+import data from "./components/FakeData"
 //Need yup as validation
 //Might need to create Dummy Data to import
 
@@ -30,7 +30,7 @@ const initialFormErrors = {
 const initialPizzas = [];
 
 function fetchPizzas() {
-  return Promise.resolve({ success: true, Data })
+  return Promise.resolve({ success: true, data })
 }
 
 console.log(fetchPizzas)
@@ -44,12 +44,12 @@ const App = () => {
   //Def need things to handle form changes and events stuff
 
   const getPizzas = () => {
-    fetch(Data)
+    fetchPizzas()
       // .get("")
       .then((res) => {
         console.log("res", res)
         console.log("resData", res.data)
-        setPizzas(res.data.data);
+        setPizzas(res.data);
       })
       .catch((error) => {
         console.log("GetPizzas Broke!", error)
@@ -59,8 +59,8 @@ const App = () => {
 
   const postNewPizza = (newPizza) => {
     console.log(newPizza);
-    fetch(Data)
-      .post("", newPizza)
+    fetch(data)
+      .post(data, newPizza)
       .then((res) => {
         setPizzas([res.data, ...pizzas]);
         setFormValues(initialFormValues);
@@ -131,9 +131,6 @@ const App = () => {
       </nav>
      
 
-      {pizzas.map((pizza) => {
-        return <Pizza key={pizza.id} details={pizza} />;
-      })}
       <Switch>
         <Route path="/PizzaForm">
         <PizzaForm
@@ -141,7 +138,10 @@ const App = () => {
         change={inputChange}
         submit={formSubmit}
         errors={formErrors}
-      />
+        />
+        {pizzas.map((pizza) => {
+          return <Pizza key={pizza.id} details={pizza} />;
+        })}
         </Route>
         <Route path="/">
           <Home />
