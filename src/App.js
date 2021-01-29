@@ -49,6 +49,57 @@ const App = () => {
         ;
       });
   };
+
+  const postNewPizza = (newPizza) => {
+    console.log(newPizza);
+    fetch(data)
+      .post(data, newPizza)
+      .then((res) => {
+        setPizzas([res.data, ...pizzas]);
+        setFormValues(initialFormValues);
+        console.log("Post getBack?", pizzas);
+        console.log("Response", res.data);
+        console.log("setPizzas", [res.data, ...pizzas]);
+      })
+      .catch((error) => {
+        console.log("postNewPizzaBroke", error);
+      });
+  };
+
+  const inputChange = (name, value) => {
+    yup
+      .reach(schema, name)
+      .validate(value)
+      .then(() => {
+        setFormErrors({
+          ...formErrors,
+          [name]: "",
+        });
+      })
+      .catch((error) => {
+        setFormErrors({
+          ...formErrors,
+          [name]: error.errors,
+        });
+      });
+    setFormValues({
+      ...formValues,
+      [name]: value,
+    });
+  };
+  const formSubmit = () => {
+    const newPizza = {
+      name: formValues.name.trim(),
+      specIns: formValues.specIns.trim(),
+      size: formValues.size.trim(),
+      pineapple: formValues.pineapple,
+      jalepeno: formValues.jalepeno,
+      mandOranges: formValues.mandOranges,
+      ham: formValues.ham,
+    };
+    postNewPizza(newPizza);
+  };
+
 console.log(getPizzas())
   return (
     <>
