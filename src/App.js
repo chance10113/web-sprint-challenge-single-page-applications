@@ -29,8 +29,27 @@ const initialPizzas = [];
 function fetchPizzas() {
   return Promise.resolve({ success: true, data })
 }
+// console.log(fetchPizzas)
 
 const App = () => {
+  const [pizzas, setPizzas] = useState(initialPizzas);
+  const [formValues, setFormValues] = useState(initialFormValues);
+  const [formErrors, setFormErrors] = useState(initialFormErrors);
+
+  const getPizzas = () => {
+    fetchPizzas()
+      // .get("")
+      .then((res) => {
+        console.log("res", res)
+        console.log("resData", res.data)
+        setPizzas(res.data);
+      })
+      .catch((error) => {
+        console.log("GetPizzas Broke!", error)
+        ;
+      });
+  };
+console.log(getPizzas())
   return (
     <>
       <h1>Lambda Eats</h1>
