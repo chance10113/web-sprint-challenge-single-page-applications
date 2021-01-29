@@ -5,7 +5,7 @@ import PizzaForm from "./Components/PizzaForm";
 import schema from "./Validation/PizzaSchema";
 import Pizza from "./Components/Pizza";
 import * as yup from "yup";
-import data from "./Validation/fakeData"
+import data from "./Validation/fakeData";
 // Initial States
 const initialFormValues = {
   // text inputs
@@ -28,7 +28,7 @@ const initialFormErrors = {
 const initialPizzas = [];
 
 function fetchPizzas() {
-  return Promise.resolve({ success: true, data })
+  return Promise.resolve({ success: true, data });
 }
 // console.log(fetchPizzas)
 
@@ -46,14 +46,13 @@ const App = () => {
         setPizzas(res.data);
       })
       .catch((error) => {
-        console.log("GetPizzas Broke!", error)
-        ;
+        console.log("GetPizzas Broke!", error);
       });
   };
 
   const postNewPizza = (newPizza) => {
     console.log(newPizza);
-    fetch(data)
+    fetchPizzas()
       .post(data, newPizza)
       .then((res) => {
         setPizzas([res.data, ...pizzas]);
@@ -105,29 +104,27 @@ const App = () => {
   }, []);
 
   return (
-    
     <div className="App-Holder-Div">
-       <nav>
-         <div className="nav-bar-links">
-           <Link to="/"> Home </Link>
-           <Link to="/PizzaForm"> Pizza? </Link>
-         </div>
-         <h1 className="Home-Header">Lambda Eats</h1>
-         <h2> Would you like a....? </h2>
-       </nav>
-     
+      <nav>
+        <div className="nav-bar-links">
+          <Link to="/"> Home </Link>
+          <Link to="/PizzaForm"> Pizza? </Link>
+        </div>
+        <h1 className="Home-Header">Lambda Eats</h1>
+        <h2> Would you like a....? </h2>
+      </nav>
 
       <Switch>
         <Route path="/PizzaForm">
-        <PizzaForm
-        values={formValues}
-        change={inputChange}
-        submit={formSubmit}
-        errors={formErrors}
-        />
-        {pizzas.map((pizza) => {
-          return <Pizza key={pizza.id} details={pizza} />;
-        })}
+          <PizzaForm
+            values={formValues}
+            change={inputChange}
+            submit={formSubmit}
+            errors={formErrors}
+          />
+          {pizzas.map((pizza) => {
+            return <Pizza key={pizza.id} details={pizza} />;
+          })}
         </Route>
         <Route path="/">
           <Home />
