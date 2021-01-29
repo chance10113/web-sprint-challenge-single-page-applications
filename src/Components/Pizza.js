@@ -11,7 +11,7 @@ export default function Pizza({ details }) {
     <div className="pizzaContainer">
       <h2>{details.name}</h2>
       <p> Size:{details.size} </p>
-      <p> Toppings:{details.toppings} </p>
+      {/* <p> Toppings:{details.toppings} </p> */}
       <p> Special Instructions: {details.specIns} </p>
     </div>
   );

@@ -22,6 +22,7 @@ const initialFormValues = {
 
 const initialFormErrors = {
   name: "",
+  size: "",
 };
 
 const initialPizzas = [];

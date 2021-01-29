@@ -17,6 +17,11 @@ export default function PizzaForm(props) {
     <form className="PizzaForm-container" onSubmit={onSubmit}>
       <h2> Build Your Pizza! </h2>
       <div className="PizzaForm group-inputs">
+      <div className="errors">
+          {/* VALIDATION ERRORS */}
+          <div>{errors.name}</div>
+          <div>{errors.size}</div>
+        </div>
         <label>
           Name
           <input
