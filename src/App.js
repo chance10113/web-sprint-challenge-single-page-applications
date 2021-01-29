@@ -40,8 +40,8 @@ const App = () => {
     fetchPizzas()
       // .get("")
       .then((res) => {
-        console.log("res", res)
-        console.log("resData", res.data)
+        // console.log("res", res)
+        // console.log("resData", res.data)
         setPizzas(res.data);
       })
       .catch((error) => {
@@ -57,9 +57,9 @@ const App = () => {
       .then((res) => {
         setPizzas([res.data, ...pizzas]);
         setFormValues(initialFormValues);
-        console.log("Post getBack?", pizzas);
-        console.log("Response", res.data);
-        console.log("setPizzas", [res.data, ...pizzas]);
+        // console.log("Post getBack?", pizzas);
+        // console.log("Response", res.data);
+        // console.log("setPizzas", [res.data, ...pizzas]);
       })
       .catch((error) => {
         console.log("postNewPizzaBroke", error);
@@ -99,13 +99,40 @@ const App = () => {
     };
     postNewPizza(newPizza);
   };
+  useEffect(() => {
+    getPizzas();
+  }, []);
 
-console.log(getPizzas())
   return (
-    <>
-      <h1>Lambda Eats</h1>
-      <p>You can remove this code and create your own header</p>
-    </>
+    
+    <div className="App-Holder-Div">
+       <nav>
+         <div className="nav-bar-links">
+           <Link to="/"> Home </Link>
+           <Link to="/PizzaForm"> Pizza? </Link>
+         </div>
+         <h1 className="Home-Header">Lambda Eats</h1>
+         <h2> Would you like a....? </h2>
+       </nav>
+     
+
+      <Switch>
+        <Route path="/PizzaForm">
+        <PizzaForm
+        values={formValues}
+        change={inputChange}
+        submit={formSubmit}
+        errors={formErrors}
+        />
+        {pizzas.map((pizza) => {
+          return <Pizza key={pizza.id} details={pizza} />;
+        })}
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </div>
   );
 };
 export default App;
